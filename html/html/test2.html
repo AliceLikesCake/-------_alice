@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>佳佳早餐首頁</title>
+    
+    <!-- <link rel="stylesheet" href="/html/css/mealstyles.css" /> -->
+     
+    <link rel="stylesheet" href="/html/css/test.css" />
+    
+    <script src="https://unpkg.com/vue@3.5.3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="/html/html/meal.html">
+              <img src="/images/logo.png" alt="Logo" width="32" height="32" class="d-inline-block align-text-top" />
+              <span class="text-part1">佳佳</span><span class="text-part2">早餐店</span>
+          </a>
+          <div class="navbar-links">
+              <a href="/html/html/index.html" class="btn-link">登入</a>
+              <a href="/html/html/login.html" class="btn-link">註冊</a>
+          </div>
+      </div>
+  </nav>
+
+    <div id="app">
+        <div class="container-all">
+            <div class="container-left">
+                <!-- 导航栏 -->
+                <nav id="sidebar">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="javascript:void(0)" @click="loadLastOrder"><i class="fa-regular fa-heart"></i> 再點一次</a>
+                        </li>
+                        <li>
+                            <a href="meal.html"><i class="fa-solid fa-burger"></i> 餐點點餐</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" @click="toggleDropdown" id="dropdown">
+                                <i class="fa-regular fa-user"></i> 會員資料
+                            </a>
+                            <!-- 子菜单，使用 transition 添加过渡效果 -->
+                            <transition name="slide-fade">
+                                <ul v-if="dropdownVisible" id="sublist" class="list-unstyled dropdown-content">
+                                    <li><a href="member.html">修改資料</a></li>
+                                    <li><a href="changepassword.html">修改密碼</a></li>
+                                </ul>
+                            </transition>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa-regular fa-rectangle-list"></i> 訂單列表</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa-regular fa-rectangle-list"></i> 點數明细</a>
+                        </li>    
+                    </ul>
+                     <!-- 聯絡資訊區塊 -->
+                    <div class="contact-info">
+                        <h4>聯絡資訊</h4>
+                        <p><i class="fa-solid fa-phone"></i> 02-22765377</p>
+                        <p><i class="fa-solid fa-location-dot"></i> 新北市新莊區立信三街12巷65號1樓</p>
+                    </div>
+                </nav>         
+            </div>
+
+            <div class="container-right">
+                <p>餐點分類</p>
+                <!-- 上半部分：卡片列表 -->
+                <div id="cardContainer">
+                    <div v-for="category in categories" :key="category.id" class="card" :class="{ 'card-hover': category.id === selectedCategory }" @click="displayProducts(category.id)">
+                        <img :src="category.image" :alt="category.alt" class="card-image">
+                        <p class="card-text">{{ category.name }}</p>
+                    </div>
+                </div>
+
+                <!-- <div class="dropdown-container">
+                    <select class="select-container" v-model="selectedDropdownCategory" @change="filterProductsByDropdown">
+                        <option value="">請選擇分類</option>
+                        <option v-for="category in dropdownCategories" :key="category.text" :value="category.text">
+                            {{ category.text }}
+                        </option>
+                    </select>
+                </div> -->
+
+                <p>餐點列表</p>
+                <!-- 下半部分卡片列表 -->
+                <div id="customCardContainer">
+                    <div v-for="product in filteredProducts" :key="product.id" class="custom-card">
+                        <img :src="product.image" :alt="product.alt" class="custom-card-img">
+                        <div class="custom-card-body">
+                            <h3 class="custom-card-title">{{ product.text }}</h3>
+                            <p class="custom-card-price">{{ product.currency }}{{ product.price }}</p>
+                            <p class="custom-card-text">{{ product.details }}</p>
+                            <a href="#" class="custom-btn" @click.prevent="openMealModal(product)">查看詳情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <aside class="">
+                <div class="order-header">
+                    <h4 class="header-title">我的訂單</h4>
+                </div> 
+                <div class="order-section">
+                    <div id="order-summary">
+                        <div id="cart-items">
+                            <div v-for="(item, index) in cart" :key="index" class="cart-item">
+                              <div>
+                                <p>{{ item.text }}</p>
+                                <div class="add-ons" v-if="item.options.length > 0">
+                                  <ul>
+                                    <li v-for="option in item.options" :key="option.name">
+                                      {{ option.name }}
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              
+                              <div class="quantity-control">
+                                <button @click="decreaseQuantity(index)">-</button>
+                                <input type="text" v-model="item.quantity" readonly />
+                                <button @click="increaseQuantity(index)">+</button>
+                              </div>
+                          
+                              <!-- 总价单独一个栏位 -->
+                              <div class="total-price">
+                                NT$ {{ item.totalPrice }}
+                              </div>
+                          
+                              <span class="remove-btn" @click="removeFromCart(index)"><i class="fa-solid fa-trash"></i></span>
+                            </div>
+                          </div>
+                        </div>
+                    <div class="form-group">
+                        <label for="pickup-time">取餐時間</label>
+                        <select id="time-select" v-model="selectedTime">
+                            <option v-for="time in timeOptions" :key="time" :value="time">{{ time }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="points-display">目前點數</label>
+                        <input type="text" id="points-display" readonly :value="points" />
+                    </div>
+                    <div class="form-group">
+                        <label for="discount-points">點數折抵(每張訂單最多折抵10點)</label>
+                        <input type="number" id="discount-points" placeholder="輸入折抵點數" v-model="discountPoints" :disabled="totalAmount < 60" />
+                    </div>
+                    <div class="form-group">
+                        <label for="total-amount">總金額</label>
+                        <input type="text" id="total-amount" readonly :value="`NT$ ${totalAmount}`" />
+                    </div>
+                    <div class="form-group">
+                        <label for="points-earned">獲得點數</label>
+                        <input type="text" id="points-earned" readonly :value="pointsEarned" />
+                    </div>
+                    <button type="submit" class="submit-button">送出訂單</button>
+                </div>
+            </aside>
+        </div>
+
+        <!-- 模態視窗 -->
+        <div v-if="modalVisible" id="mealModal" class="modal show">
+            <div class="modal-content">
+                <button class="close-btn" @click="closeModal">x</button>
+                <img :src="selectedProduct.image" :alt="selectedProduct.alt" id="modal-image">
+                <h3 id="modal-title">{{ selectedProduct.text }}</h3>
+                <p id="modal-price">NT$ {{ selectedProduct.price }}</p>
+                
+                <div class="modal-options">
+                    <!-- 選項分類 -->
+                    
+                    <div v-if="selectedProduct.options && selectedProduct.options.length > 0" v-for="optionCategory in selectedProduct.options" :key="optionCategory.category" class="modal-options-categories">
+                        <p>{{ optionCategory.category }}</p>
+            
+                        <!-- 若選項為 checkbox (複選) -->
+                       <!-- 若選項為 checkbox (複選) -->
+                        <div v-if="optionCategory.type === 'checkbox'" class="checkbox-options">
+                            <label v-for="(item, index) in optionCategory.items" :key="item.value">
+                                <!-- 使用相同的 name，确保每个复选框属于同一组 -->
+                                <input type="checkbox" :value="item" v-model="selectedOptions" :name="optionCategory.category + '-' + index">
+                                {{ item.label }} (+NT${{ item.price }})
+                            </label>
+                        </div>
+
+                        <!-- 若選項為 radio (單選) -->
+                        <div v-if="optionCategory.type === 'radio'" class="radio-options">
+                            <label v-for="(item, index) in optionCategory.items" :key="item.value">
+                                <!-- 确保 name 属性在同一分类中唯一 -->
+                                <input type="radio" :value="item" v-model="selectedOptions[optionCategory.category]" :name="optionCategory.category">
+                                {{ item.label }} (+NT${{ item.price }})
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <p v-else>無可選的加選項目</p>
+                </div>
+                
+                <button @click="addToCart" id="add-to-cart" class="add-to-cart-btn">加入購物車</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         const { createApp } = Vue;
+
+            createApp({
+                data() {
+                    return {
+                        timeOptions: [],
+                        selectedTime: '',
+                        categories: [],
+                        products: [],
+                        filteredProducts: [],
+                        selectedCategory: null,
+                        modalVisible: false,
+                        selectedProduct: {},
+                        selectedOptions: [], // 用于存储选中的选项
+                        cart: [],
+                        isReorder: false, // 用於標識是否是再點一次的操作
+                        pickupTime: '',
+                        points: 0,
+                        discountPoints: 0,
+                        totalAmount: 0,
+                        pointsEarned: 0,
+                        dropdownVisible: false // 控制会员资料下拉菜单的显示
+                    };
+                },
+                methods: {
+                    toggleDropdown() {
+                        this.dropdownVisible = !this.dropdownVisible; // 切换下拉菜单显示/隐藏状态
+                    },
+                    // "再點一次"的功能：加載上次訂單
+                    async loadLastOrder() {
+                        try {
+                            const response = await fetch('/html/json/orders.json');
+                            const orderData = await response.json();
+                            const lastOrder = orderData.orders[0];
+
+                            const mealResponse = await fetch('/html/json/meal.json');
+                            const mealData = await mealResponse.json();
+                            const products = mealData.Products;
+
+                            // 匹配訂單中的商品
+                            lastOrder.items.forEach(item => {
+                                const product = products.find(p => p.id === item.productId); // 根據 productId 匹配商品
+
+                                if (product) {
+                                    // 設置商品的基礎價格
+                                    item.price = product.price;
+                                    item.text = product.text;
+
+                                    // 計算加選項的價格，從 products 中匹配加選項的價格
+                                    let addOnPrice = 0;
+                                    item.options.forEach(option => {
+                                        product.options.forEach(optionCategory => {
+                                            const matchedOption = optionCategory.items.find(o => o.price === option.price);
+                                            if (matchedOption) {
+                                                addOnPrice += matchedOption.price;
+                                            }
+                                        });
+                                    });
+
+                                    // 計算總價 = 基礎價格 + 加選項價格 * 數量
+                                    item.totalPrice = (product.price + addOnPrice) * item.quantity;
+                                }
+                            });
+
+                            // 更新订单信息到当前界面
+                            this.cart = lastOrder.items;
+                            this.pickupTime = lastOrder.pickupTime;
+                            this.updateTotalAmount(); // 更新总金额
+                        } catch (error) {
+                            console.error('加载订单时出错:', error);
+                        }
+                    },
+                    // 手動點餐時，將商品添加到購物車
+                    addToCart() {
+                        let selectedAddOns = [];
+
+                        // 处理复选框和单选框的选项
+                        Object.keys(this.selectedOptions).forEach(category => {
+                            const option = this.selectedOptions[category];
+
+                            if (Array.isArray(option)) {
+                                selectedAddOns = [...selectedAddOns, ...option];
+                            } else {
+                                selectedAddOns.push(option);
+                            }
+                        });
+
+                        const totalAddOnsPrice = selectedAddOns.reduce((total, option) => total + option.price, 0);
+
+                        const cartItem = {
+                            text: this.selectedProduct.text,
+                            price: this.selectedProduct.price,
+                            options: selectedAddOns,
+                            quantity: 1,
+                            totalPrice: this.selectedProduct.price + totalAddOnsPrice
+                        };
+
+                        this.cart.push(cartItem);
+                        this.updateTotalAmount();
+                        this.closeModal();
+                    },
+                    // 增加數量
+                    increaseQuantity(index) {
+                        this.cart[index].quantity++;
+                        // 根據是否為再點一次的情況，選擇不同的價格計算方式
+                        if (this.isReorder) {
+                            this.updateTotalPriceForLastOrderItem(index);
+                        } else {
+                            this.updateTotalPriceForItem(index);
+                        }
+                    },
+                    // 減少數量
+                    decreaseQuantity(index) {
+                        if (this.cart[index].quantity > 1) {
+                            this.cart[index].quantity--;
+                            if (this.isReorder) {
+                                this.updateTotalPriceForLastOrderItem(index);
+                            } else {
+                                this.updateTotalPriceForItem(index);
+                            }
+                        }
+                    },
+                    // 從購物車移除商品
+                    removeFromCart(index) {
+                        this.cart.splice(index, 1);
+                        this.updateTotalAmount();
+                    },
+                    // 用於「再點一次」時的價格計算
+                    async updateTotalPriceForLastOrderItem(index) {
+                        const item = this.cart[index];
+                        
+                        try {
+                            const mealResponse = await fetch('/html/json/meal.json');
+                            const mealData = await mealResponse.json();
+                            const products = mealData.Products;
+
+                            const product = products.find(p => p.id === item.productId);
+                            
+                            if (product) {
+                                let basePrice = product.price;
+
+                                let addOnsPrice = item.options.reduce((total, option) => {
+                                    let optionPrice = 0;
+                                    product.options.forEach(optionCategory => {
+                                        const matchedOption = optionCategory.items.find(o => o.name === option.name);
+                                        if (matchedOption) {
+                                            optionPrice = matchedOption.price;
+                                        }
+                                    });
+                                    return total + optionPrice;
+                                }, 0);
+
+                                item.totalPrice = (basePrice + addOnsPrice) * item.quantity;
+                                this.updateTotalAmount();
+                            } else {
+                                console.error("無法找到對應的商品");
+                            }
+                        } catch (error) {
+                            console.error('更新價格時從 meal.json 加載數據出錯:', error);
+                        }
+                    },
+                    // 手動點餐時的價格計算
+                    updateTotalPriceForItem(index) {
+                        const item = this.cart[index];
+
+                        const basePrice = Number(item.price) || 0;
+                        const addOnsPrice = item.options.reduce((total, option) => total + Number(option.price || 0), 0);
+                        const totalPrice = (basePrice + addOnsPrice) * item.quantity;
+
+                        item.totalPrice = totalPrice;
+                        this.updateTotalAmount();
+                    },
+                    // 更新總金額
+                    updateTotalAmount() {
+                        let totalAmount = this.cart.reduce((total, item) => total + (item.totalPrice || 0), 0);
+                        this.pointsEarned = Math.floor(totalAmount / 60); // 每60元获得1点积分
+
+                        let discount = Math.min(this.discountPoints, 10); // 最大折抵點數為10
+                        discount = Math.min(discount, this.points); // 折抵點數不能超過目前點數
+                        this.totalAmount = Math.max(totalAmount - discount, 0); // 確保總金額不為負數
+                    },
+                    async loadPoints() {
+                        try {
+                            const response = await fetch('/html/json/members.json'); // 假设 points 的数据来源
+                            const data = await response.json();
+                            this.points = data.members[0].points; // 获取用户的当前点数
+                        } catch (error) {
+                            console.error('载入 JSON 时发生错误: ', error);
+                        }
+                    },
+                    generateClosestTimeOptions() {
+                        let now = new Date();
+                        now.setSeconds(0, 0);
+
+                        let earliestTime = new Date();
+                        earliestTime.setHours(5, 30);
+                        earliestTime.setSeconds(0, 0);
+
+                        let nextTime = (now > earliestTime) ? new Date(now) : new Date(earliestTime);
+                        nextTime.setMinutes(Math.ceil(nextTime.getMinutes() / 15) * 15);
+
+                        for (let i = 0; i < 5; i++) {
+                            let hours = nextTime.getHours().toString().padStart(2, '0');
+                            let minutes = nextTime.getMinutes().toString().padStart(2, '0');
+                            this.timeOptions.push(`${hours}:${minutes}`);
+                            nextTime.setMinutes(nextTime.getMinutes() + 15);
+                        }
+                    },
+                    async loadCards() {
+                        try {
+                            const response = await fetch('/html/json/meal.json');
+                            const data = await response.json();
+                            this.categories = data.Categories;
+                            this.products = data.Products;
+
+                            this.displayProducts(2);  // 默认显示汉堡类
+                        } catch (error) {
+                            console.error('Error loading data:', error);
+                        }
+                    },
+                    displayProducts(categoryId) {
+                        this.selectedCategory = categoryId;
+                        this.filteredProducts = this.products.filter(product => product.categoryId === categoryId);
+                        console.log(JSON.stringify(this.filteredProducts));  // 使用 JSON.stringify 打印數據
+                    },
+                    openMealModal(product) {
+                        this.selectedProduct = product;
+                        this.modalVisible = true;
+                        this.selectedOptions = [];
+                    },
+                    closeModal() {
+                        this.modalVisible = false;
+                    }
+                },
+                watch: {
+                    discountPoints(val) {
+                        if (val > 10) {
+                            this.discountPoints = 10;
+                        } else if (val < 0) {
+                            this.discountPoints = 0;
+                        }
+
+                        if (val > this.points) {
+                            this.discountPoints = this.points;
+                        }
+
+                        this.updateTotalAmount();
+                    }
+                },
+                mounted() {
+                    this.loadPoints(); // 加载当前用户的点数
+                    this.loadCards(); // 加载菜单项
+                    this.generateClosestTimeOptions(); // 加载取餐时间选项
+                }
+            }).mount('#app');
+
+
+    </script>
+</body>
+</html>

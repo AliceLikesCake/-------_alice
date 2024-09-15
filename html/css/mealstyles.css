@@ -1,0 +1,552 @@
+/******************************navbar樣式****************************************************/
+
+.text-part1 {
+  color: #f37c4c; /* 第一部分的顏色，例如橙色 */
+  font-weight: bold;
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+.text-part2 {
+  color: #efa141; /* 第二部分的顏色，例如綠色 */
+  font-weight: bolder;
+  font-size: 30px;
+  vertical-align: top;
+}
+/* 基本的超連結按鈕樣式 */
+.btn-link {
+  display: inline-block; /* 讓超連結顯示成像按鈕一樣 */
+  padding: 10px 20px; /* 調整內邊距來達成按鈕效果 */
+  font-size: 16px; /* 設置字體大小 */
+  font-weight: bolder;
+  text-align: center; /* 文字居中 */
+  text-decoration: none !important;/* 移除超連結預設的下劃線 */
+  background-color: #e0e0e0; /* 設置按鈕背景顏色 */
+  color: rgb(80, 80, 80); /* 設置文字顏色 */
+  border-radius: 5px; /* 圓角邊框 */
+  border: none; /* 移除邊框 */
+  transition: background-color 0.3s ease; /* 讓按鈕有過渡效果 */
+  
+}
+
+.btn-link:hover {
+  background-color: rgb(240, 159, 134); /* 設置滑過按鈕時的背景顏色 */
+  color: white !important;;
+  
+}
+
+/* 調整按鈕外觀大小 */
+.btn-link:active {
+  background-color: #1e7e34; /* 當按下按鈕時的顏色 */
+  transform: scale(0.98); /* 按下時縮小一點點，模擬按下效果 */
+}
+
+.navbar-brand{
+  vertical-align: top;
+}
+/**************************左邊清單****************************************************/
+
+
+.container-all {
+  display: flex;
+  align-items: stretch;
+}
+
+#sidebar {
+  width: 250;
+  height: 100vh;
+  background-color: rgb(245, 245, 245);
+  color: gray;
+}
+
+.container-right {
+  background-color: rgb(238, 238, 238);
+  /* width: 100%;*/
+  /* height: 10;  */
+  
+}
+
+
+
+/* 主要選單樣式 */
+#sidebar {
+  width: 250px; /* 根據需要設置選單寬度 */
+  background-color: #ffffff;
+  color: white;
+  height: 100vh; /* 讓選單填滿整個視窗高度 */
+  padding: 10px;
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); */
+  overflow-y: auto; /* 使選單內容可滾動 */
+  position: relative;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#sidebar ul li {
+  margin: 10px 0;
+  position: relative; /* 確保子菜單可以絕對定位 */
+}
+
+#sidebar ul li a {
+  color: #969696;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 25px;
+  display: block;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgb(231, 231, 231); /* 初始邊框為透明 */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* 過渡效果 */
+}
+
+#sidebar ul li a:hover {
+  background-color: #fde9e1; /* 選單項目懸停顏色 */
+  border-color: rgb(232, 126, 77);
+  color: rgb(219, 82, 19);
+  border-radius: 12px;
+  border-width: 2px; /* 悬停时边框宽度 */
+}
+
+/* 圖標懸停顏色 */
+#sidebar ul li a i {
+  color: #c7c7c7; /* 初始圖標顏色 */
+  transition: color 0.3s ease; /* 過渡效果 */
+}
+
+#sidebar ul li a:hover i {
+  color: rgb(235, 102, 41); /* 懸停時圖標顏色 */
+}
+
+/* 子菜單 */
+.dropdown ul {
+  margin-top: 10px; /* 避免子菜單與其他項目重疊 */
+}
+
+#sublist {
+  padding-left: 20px; /* 讓子菜單有縮排 */
+}
+
+
+
+.container-right {
+  width: 1000px;
+  height: 2000px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #6e6e6e;
+  display: flex;
+  flex-direction: column;
+  /* gap: 20px; */
+}
+
+/* *********************************訂單區域樣式 ***********************************/
+.order-section {
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 450px; /* 設置訂單區域寬度 */
+  /* max-width: 100%; */
+  padding: 0;
+  
+  
+}
+
+/* 標題區域樣式 */
+.order-header {
+  background-color: #d1f0de;
+  padding: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.header-title {
+  text-align: center;
+  margin: 0;
+  color: #509b73;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+
+/* 內容區域樣式 */
+.order-body {
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+/* 表單組件樣式 */
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+select, input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+}
+
+/* 按鈕樣式 */
+.submit-button {
+  background-color: #47b577;
+  border: none;
+  color: #ffffff;
+  font-size: larger;
+  font-weight: bolder;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #218866;
+}
+
+#order-summary {
+  border: 0px solid #ccc;
+  padding: 10px;
+  width: 430px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.item-name {
+  flex: 2; /* 商品名稱占用的空間 */
+  text-align: left;
+  font-weight: bolder;
+  color: rgb(255, 106, 0);
+  font-size: large;
+}
+
+.add-ons {
+  flex: 3; /* 加選項目占用的空間 */
+  text-align: center;
+  font-size: smaller;
+}
+
+.total-price {
+  flex: 1; /* 總價占用的空間 */
+  text-align: right;
+  font-size: small;
+}
+
+
+.cart-item p {
+  margin: 0;
+  padding-right: 10px; /* 讓內容之間有一些空間 */
+
+}
+
+.cart-item ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; /* 移除項目符號 */
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(175, 175, 175);
+
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* 控制按鈕和輸入框之間的距離 */
+}
+
+.quantity-control button {
+  background-color: #f0f0f0; /* 按鈕背景色 */
+  border: 1px solid #ccc;    /* 按鈕邊框 */
+  border-radius: 5px;        /* 圓角效果 */
+  padding: 2px 5px;         /* 按鈕內部填充 */
+  font-size: 16px;           /* 按鈕字體大小 */
+  cursor: pointer;           /* 鼠標懸停時變成手型 */
+}
+
+.quantity-control button:hover {
+  background-color: #e0e0e0; /* 懸停時變化的背景色 */
+}
+
+.quantity-control input {
+  width: 30px;              /* 輸入框的寬度 */
+  text-align: center;        /* 文字居中對齊 */
+  border: 1px solid #ccc;    /* 輸入框邊框 */
+  border-radius: 5px;        /* 輸入框圓角 */
+  padding: 5px;              /* 內部填充 */
+  font-size: 16px;           /* 字體大小 */
+}
+
+
+/* ************************餐點分類******************************** */
+
+#cardContainer {
+  display: flex;
+  flex-wrap: wrap; /* 如果卡片太多會自動換行 */
+  justify-content: center;
+  /* grid-template-columns: repeat(5, 1fr);  */
+  
+ 
+  
+  
+  
+}
+.card {
+  width: 150px;
+  height: 200px;
+  margin: 4px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  padding: 10px;  
+ 
+}
+
+.card-image {
+  width: 40px;
+  height: 40px;
+ 
+  border-radius: 5px;
+  margin-right: 4px;
+  padding: 5px;
+  
+  
+  
+}
+
+.card-text {
+  /* flex-grow: 1; */
+  text-align:center;
+  line-height: 1.2;
+  font-size: 20px;
+  
+}
+
+.card:hover {
+  background-color: #fde9e1;
+  border-color: rgb(232, 126, 77);
+  border-width: 2px; /* 悬停时边框宽度 */
+}
+
+
+
+.dropdown-container {
+  margin: 5px 0; /* 上下間距 */
+  text-align: center;
+  
+}
+
+select {
+  width: 98%;
+  padding: 5px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+
+}
+
+select:hover {
+  border-color: #ff7e47; /* 選單在滑過時的邊框顏色 */
+}
+/*********************餐點列表*******************************/
+#customCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px; /* 卡片之间的间距 */
+  align-items: center;
+  justify-content:flex-start;
+  margin-left: 15PX;
+}
+
+.custom-card {
+  border: 1px solid #ddd; /* 卡片边框 */
+  border-radius: 8px; /* 卡片边角圆润 */
+  overflow: hidden; /* 避免内部元素超出边框 */
+  width: 220px; /* 卡片宽度 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0.1, 0.1); /* 卡片阴影 */
+  background-color: #fff; /* 卡片背景颜色 */
+  display: flex; /* 启用 Flexbox 布局 */
+  flex-direction: column; /* 垂直方向布局 */
+  align-items: center; /* 水平居中 */
+  justify-content: center; /* 垂直居中 */
+  text-align: center; /* 文本居中对齐 */
+  /* margin-left: 10PX; */
+  
+}
+
+.custom-card-img {
+  width:150px; /* 图片宽度不超过容器宽度 */
+  height: 150px; /* 图片高度不超过200px */
+  /*width: auto;*/ /* 宽度自动调整 */
+  /*height: auto;*/ /* 高度自动调整 */
+  display: block; /* 去掉下方的空白 */
+  background-color: rgb(243, 243, 243);
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.custom-card-body {
+  padding: 15px; /* 内边距 */
+}
+
+.custom-card-title {
+  font-size: 25px; /* 标题字体大小 */
+  margin: 0; /* 去掉标题的外边距 */
+  color:#555 ;
+  font-weight: bolder;
+
+}
+
+.custom-card-price {
+  font-size: 18px; /* 文字字体大小 */
+  color: #f0ae1f; /* 文字颜色 */
+  font-weight: bolder;
+}
+
+.custom-btn {
+  display: inline-block;
+  padding: 5px 20px; /* 按钮内边距 */
+  font-size: 1rem; /* 按钮字体大小 */
+  color: #fff; /* 按钮文字颜色 */
+  background-color: #ec8d40; /* 按钮背景颜色 */
+  text-align: center; /* 按钮文字居中 */
+  text-decoration: none; /* 去掉按钮下划线 */
+  border-radius: 36px; /* 按钮边角圆润 */
+  width: 150px;
+  
+  
+}
+
+.custom-btn:hover {
+  background-color: #da823a; /* 鼠标悬停时按钮背景颜色 */
+}
+
+.custom-card:hover {
+  background-color: #ffffff;
+  border-color: rgb(232, 126, 77);
+  border-width: 2px; /* 悬停时边框宽度 */
+}
+
+
+/**********************************MODEL***********************************/
+.modal {
+  display: none; /* 初始隱藏 */
+  position: fixed;
+   z-index: 1;
+  left: 0;
+  top: 0;
+  width: 10px; 
+  height: 10px; 
+  background-color: rgba(0, 0, 0, 0.4); /*半透明背景*/ 
+
+}
+
+.modal-content {
+  align-items: center; /* 水平置中 */
+  justify-content: center; /* 垂直置中 */
+  
+  display:block !important;
+  text-align: center;
+
+  
+  background-color: #fff;
+  margin: 0 auto; 
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative; 
+  top: 50%; 
+  transform: translateY(-50%); 
+
+  
+  /* 添加滑動過渡動畫 */
+  opacity: 0;
+  transform: translateY(-50%) scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.modal.show .modal-content {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.modal-title{
+  font-weight: bolder;
+}
+
+.modal-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-left: 20px;
+  
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+}
+
+.modal-options {
+  margin: 15px 0;
+  text-align: left;
+}
+
+button#add-to-cart {
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+button#add-to-cart:hover {
+  background-color: #ff7700;
+}
+
+

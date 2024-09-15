@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Card Display</title>
+    <style>
+        .card {
+            width: 150px;
+            height: 100px;
+            margin: 10px;
+            background-color: #f0f0f0;
+            display: inline-block;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: #ffd2bf;
+        }
+
+        #details {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 上半部分：卡片列表 -->
+    <div id="cardContainer">
+        <div class="card" data-content="Card 1 details">Card 1</div>
+        <div class="card" data-content="Card 2 details">Card 2</div>
+        <div class="card" data-content="Card 3 details">Card 3</div>
+        <div class="card" data-content="Card 4 details">Card 4</div>
+    </div>
+
+    <!-- 下半部分：動態顯示的卡片內容 -->
+    <div id="details">
+        <h2>Card Details</h2>
+        <p id="cardContent"></p>
+    </div>
+
+    <script>
+        // 獲取所有卡片元素
+        const cards = document.querySelectorAll('.card');
+
+        // 獲取顯示詳細信息的容器
+        const details = document.getElementById('details');
+        const cardContent = document.getElementById('cardContent');
+
+        // 為每個卡片綁定點擊事件
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                // 獲取點擊的卡片的內容
+                const content = card.getAttribute('data-content');
+
+                // 更新下半部分的內容並顯示
+                cardContent.textContent = content;
+                details.style.display = 'block';
+            });
+        });
+    </script>
+
+</body>
+</html>

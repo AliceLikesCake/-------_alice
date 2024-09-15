@@ -1,0 +1,17 @@
+{
+    "members":
+    [
+        {
+            "id": 1,
+            "name": "王小明",
+            "email": "abc@gmail.com",
+            "password": "123",
+            "phone": "(09) 1912-3456",
+            "profilePhoto": "/images/kenma.jpg",
+            "points": 5,
+            "registrationDate": "2024/5/20",
+            "blackList": 0
+        }
+    ]
+}
+  

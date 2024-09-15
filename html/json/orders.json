@@ -1,0 +1,25 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 2,
+          "options": [
+            { "price": 15 ,"name":"加起司"}
+          ]
+        },
+        {
+          "productId": 2,
+          "quantity": 1,
+          "options": []
+        }
+      ],
+      "pickupTime": "11:30",
+      "points": 10,
+      "totalAmount": 270,
+      "pointsEarned": 4
+    }
+  ]
+}

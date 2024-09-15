@@ -1,0 +1,423 @@
+{
+  "Categories": 
+  [
+    {
+      "image": "/images/eggcake.png",
+      "id": 1,
+      "name": "蛋餅"
+    },
+    {
+      "image": "/images/hamburger.png",
+      "id": 2,
+      "name": "漢堡"
+    },
+    {
+      "image": "/images/toast.png",
+      "id": 3,
+      "name": "吐司"
+    },
+    {
+      "image": "/images/noodles.png",
+      "id": 4,
+      "name": "鐵板麵"
+    },
+    {
+      "image": "/images/sandwich.png",
+      "id": 5,
+      "name": "總匯"
+    },
+    {
+      "image": "/images/cheese.png",
+      "id": 6,
+      "name": "乳酪餅"
+    },
+    {
+      "image": "/images/pie.png",
+      "id": 7,
+      "name": "蔥抓餅"
+    },
+    {
+      "image": "/images/menu.png",
+      "id": 8,
+      "name": "套餐"
+    },
+    {
+      "image": "/images/fries.png",
+      "id": 9,
+      "name": "炸物"
+    },
+    {
+      "image": "/images/drinks.png",
+      "id": 11,
+      "name": "飲料"
+    }
+
+
+  ],
+  "Products": [
+    {
+      "id":1,
+      "image": "/images/hamburgerbig.jpg",
+      "alt": "漢堡",
+      "categoryId":2,
+      "text": "牛肉漢堡",
+      "price": 120,  
+      "currency": "NT$",  
+      "category": "漢堡類",
+      "options": [
+        {
+          "type": "checkbox",
+          "category": "餐點加料",
+          "items": [
+            {
+              "label": "加起司",
+              "name": "加起司",
+              "price": 15
+            },
+            {
+              "label": "加蛋",
+              "name": "加蛋",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "category": "餐點調味",
+          "items": [
+            {
+              "label": "不醬",
+              "name": "不醬",
+              "price": 0
+              
+            },
+            {
+              "label": "不菜",
+              "name": "不菜",
+              "price": 0
+            }
+          ]
+        }
+      ]
+      
+    },
+    {
+      "id":1,
+      "image": "/images/hamburgerbig.jpg",
+      "alt": "漢堡",
+      "categoryId":2,
+      "text": "牛肉漢堡",
+      "price": 120,  
+      "currency": "NT$",  
+      "category": "漢堡類",
+      "options": [
+        {
+          "type": "checkbox",
+          "category": "餐點加料",
+          "items": [
+            {
+              "label": "加起司",
+              "name": "加起司",
+              "price": 15
+            },
+            {
+              "label": "加蛋",
+              "name": "加蛋",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "category": "餐點調味",
+          "items": [
+            {
+              "label": "不醬",
+              "name": "不醬",
+              "price": 0
+              
+            },
+            {
+              "label": "不菜",
+              "name": "不菜",
+              "price": 0
+            }
+          ]
+        }
+      ]
+      
+    },
+    {
+      "id":1,
+      "image": "/images/hamburgerbig.jpg",
+      "alt": "漢堡",
+      "categoryId":2,
+      "text": "牛肉漢堡",
+      "price": 120,  
+      "currency": "NT$",  
+      "category": "漢堡類",
+      "options": [
+        {
+          "type": "checkbox",
+          "category": "餐點加料",
+          "items": [
+            {
+              "label": "加起司",
+              "name": "加起司",
+              "price": 15
+            },
+            {
+              "label": "加蛋",
+              "name": "加蛋",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "category": "餐點調味",
+          "items": [
+            {
+              "label": "不醬",
+              "name": "不醬",
+              "price": 0
+              
+            },
+            {
+              "label": "不菜",
+              "name": "不菜",
+              "price": 0
+            }
+          ]
+        }
+      ]
+      
+    },
+    {
+      "id":1,
+      "image": "/images/hamburgerbig.jpg",
+      "alt": "漢堡",
+      "categoryId":2,
+      "text": "牛肉漢堡",
+      "price": 120,  
+      "currency": "NT$",  
+      "category": "漢堡類",
+      "options": [
+        {
+          "type": "checkbox",
+          "category": "餐點加料",
+          "items": [
+            {
+              "label": "加起司",
+              "name": "加起司",
+              "price": 15
+            },
+            {
+              "label": "加蛋",
+              "name": "加蛋",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "category": "餐點調味",
+          "items": [
+            {
+              "label": "不醬",
+              "name": "不醬",
+              "price": 0
+              
+            },
+            {
+              "label": "不菜",
+              "name": "不菜",
+              "price": 0
+            }
+          ]
+        }
+      ]
+      
+    },
+    {
+      "id":1,
+      "image": "/images/hamburgerbig.jpg",
+      "alt": "漢堡",
+      "categoryId":2,
+      "text": "牛肉漢堡",
+      "price": 120,  
+      "currency": "NT$",  
+      "category": "漢堡類",
+      "options": [
+        {
+          "type": "checkbox",
+          "category": "餐點加料",
+          "items": [
+            {
+              "label": "加起司",
+              "name": "加起司",
+              "price": 15
+            },
+            {
+              "label": "加蛋",
+              "name": "加蛋",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "category": "餐點調味",
+          "items": [
+            {
+              "label": "不醬",
+              "name": "不醬",
+              "price": 0
+              
+            },
+            {
+              "label": "不菜",
+              "name": "不菜",
+              "price": 0
+            }
+          ]
+        }
+      ]
+      
+    },
+    {
+      "id":1,
+      "image": "/images/hamburgerbig.jpg",
+      "alt": "漢堡",
+      "categoryId":2,
+      "text": "牛肉漢堡",
+      "price": 120,  
+      "currency": "NT$",  
+      "category": "漢堡類",
+      "options": [
+        {
+          "type": "checkbox",
+          "category": "餐點加料",
+          "items": [
+            {
+              "label": "加起司",
+              "name": "加起司",
+              "price": 15
+            },
+            {
+              "label": "加蛋",
+              "name": "加蛋",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "category": "餐點調味",
+          "items": [
+            {
+              "label": "不醬",
+              "name": "不醬",
+              "price": 0
+              
+            },
+            {
+              "label": "不菜",
+              "name": "不菜",
+              "price": 0
+            }
+          ]
+        }
+      ]
+      
+    },
+    {
+      "id":2,
+      "image": "/images/blacktea.png",
+      "categoryId":11,
+      "alt": "飲料",
+      "text": "紅茶",
+      "price": 15,
+      "currency": "NT$",
+      "category": "飲料類",
+      "options": [
+        {
+          "type": "radio",
+          "category": "飲料溫度",
+          "items": [
+            {
+              "label": "冰",
+              "name": "冰",
+              "price": 0
+            },
+            {
+              "label": "熱",
+              "name": "熱",
+              "price": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id":3,
+      "image": "/images/chips.png",
+      "categoryId":9,
+      "alt": "炸物",
+      "text": "薯條",
+      "price": 35,
+      "currency": "NT$",
+      "category": "炸物類",
+      "options": []
+    },
+    {
+      "id":4,
+      "image": "/images/eggcakebig.png",
+      "alt": "蛋餅",
+      "categoryId":1,
+      "text": "原味蛋餅",
+      "price": 35,
+      "currency": "NT$",
+      "category": "蛋餅類",
+      "options": [
+        {
+          "type": "radio",
+          "category": "餐點加料",
+          "items": [
+            {
+              "label": "加起司",
+              "name": "加起司",
+              "price": 15
+            },
+            {
+              "label": "加蛋",
+              "name": "加蛋",
+              "price": 15
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "category": "餐點調味",
+          "items": [
+            {
+              "label": "不醬",
+              "name": "不醬",
+              "price": 0
+              
+            },
+            {
+              "label": "不菜",
+              "name": "不菜",
+              "price": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
